@@ -17,7 +17,6 @@ const locationSchema = new mongoose.Schema({
   restaurants: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      restaurant: mongoose.Schema.Types.restaurant,
       ref: "Restaurant",
     },
   ],

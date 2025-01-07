@@ -9,6 +9,12 @@ const restaurantSchema = new mongoose.Schema({
     ref: "Location",
     required: true,
   },
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ]
 });
 
 module.exports = mongoose.model("Restaurant", restaurantSchema);

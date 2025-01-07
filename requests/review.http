@@ -1,11 +1,9 @@
-### Add Restaurant (Admin)
-POST http://localhost:5000/restaurant/addrestaurant
-Content-Type: application/json
+POST http://localhost:5000/review/addreview
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QxNzdiOTU4NTdhNWIxOGU2OWVhNCIsInVzZXJuYW1lIjoiQmh1dmFuIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2MjUxMzA3LCJleHAiOjE3MzYyNTQ5MDd9.TU25bRd0Mk8QfpqbOBEhx3gE7moBejjkHvmtTDMvcyU
+Content-Type: application/json
 
 {
-  "restaurant": "Pizza Hut",
-  "cuisine": "Italian",
-  "rating": 4,
-  "area": "677d17bf95857a5b18e69ea8"
+  "restaurant": "677d17f195857a5b18e69eab",
+  "rating": 3,
+  "comment": "Dominos Pizza is a better choice!"
 }
