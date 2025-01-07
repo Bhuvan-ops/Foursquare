@@ -1,0 +1,15 @@
+### Valid Case: Add Location
+POST http://localhost:5000/location/addlocation
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QwOWY1ODIwMDNlMGIyNGQxYmRjYiIsInVzZXJuYW1lIjoiQ2hldGhhbiIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTczNjI0Nzg2MywiZXhwIjoxNzM2MjUxNDYzfQ.jO6-vJXJtE7AIs-xt6uSNlDLuX7QG_wYQPF128maLyE
+
+{
+  "area": "Santhekatte",
+  "district": "Udupi",
+  "state": "Karnataka",
+  "restaurants": []
+}
+
+### Valid Case: Search Location
+GET http://localhost:5000/location/search?area=Manipal
+Content-Type: application/json

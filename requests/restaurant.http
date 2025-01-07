@@ -1,0 +1,11 @@
+### Add Restaurant (Admin)
+POST http://localhost:5000/restaurant/addrestaurant
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2NmMzViYmFiNmFmZjUwMjdhOWM3MiIsInVzZXJuYW1lIjoiQmh1dmFuIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2MjQ5MDAxLCJleHAiOjE3MzYyNTI2MDF9.JNOq-VwA1d3aGYivNYKoIoZ0MwM7Jmp1R2uVMa7TeVY
+
+{
+  "restaurant": "Pizza Hut",
+  "cuisine": "Italian",
+  "rating": 4,
+  "area": "677d091682003e0b24d1bdc3"
+}
