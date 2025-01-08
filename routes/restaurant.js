@@ -48,13 +48,22 @@ router.post("/addrestaurant", authenticate, async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id).populate("location");
+    const restaurant = await Restaurant.findById(req.params.id).populate("location","area").populate("reviews","-restaurant");
 
     if (!restaurant) {
       return res.status(STATUS_CODES.NOT_FOUND).json({ message: "Restaurant not found" });
     }
 
-    res.status(STATUS_CODES.OK).json({ restaurant });
+    const reviews = restaurant.reviews;
+    let totalRating = 0;
+    reviews.forEach((review) => {
+      totalRating += review.rating;
+    });
+
+    const averageRating = reviews.length > 0 ? (totalRating / reviews.length).toFixed(1) : 0;
+    restaurant.rating = averageRating;
+
+    res.status(STATUS_CODES.CREATED).json({ restaurant });
   } catch (err) {
     res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
       message: "Error fetching restaurant details",

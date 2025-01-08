@@ -1,7 +1,7 @@
 ### Add Restaurant (Admin)
 POST http://localhost:5000/restaurant/addrestaurant
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QxNzdiOTU4NTdhNWIxOGU2OWVhNCIsInVzZXJuYW1lIjoiQmh1dmFuIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2MjUxMzA3LCJleHAiOjE3MzYyNTQ5MDd9.TU25bRd0Mk8QfpqbOBEhx3gE7moBejjkHvmtTDMvcyU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2UxNWE0NTc1MzcxYTI4YzZiYjlhZSIsInVzZXJuYW1lIjoiQ2hldGhhbiIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTczNjMxNzg3NCwiZXhwIjoxNzM2MzIxNDc0fQ.eUvyevCcIrvgEhV317DrnnhXXkTVqJIXtg-y0wpbUcg
 
 {
   "restaurant": "Pizza Hut",
@@ -9,3 +9,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QxNzdiO
   "rating": 4,
   "area": "677d17bf95857a5b18e69ea8"
 }
+
+###
+
+GET http://localhost:5000/restaurant/677e0b13f1fa042c469be73e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2UxNWE0NTc1MzcxYTI4YzZiYjlhZSIsInVzZXJuYW1lIjoiQ2hldGhhbiIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTczNjMxNzg3NCwiZXhwIjoxNzM2MzIxNDc0fQ.eUvyevCcIrvgEhV317DrnnhXXkTVqJIXtg-y0wpbUcg
+

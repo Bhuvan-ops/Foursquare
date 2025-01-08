@@ -1,0 +1,4 @@
+### Get User Profile
+GET http://localhost:5000/user/profile/677d177b95857a5b18e69ea4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2UxNWE0NTc1MzcxYTI4YzZiYjlhZSIsInVzZXJuYW1lIjoiQ2hldGhhbiIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTczNjMxNzg3NCwiZXhwIjoxNzM2MzIxNDc0fQ.eUvyevCcIrvgEhV317DrnnhXXkTVqJIXtg-y0wpbUcg
+Content-Type: application/json
