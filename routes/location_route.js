@@ -6,7 +6,7 @@ const STATUS_CODES = require("../constants.js");
 
 const router = express.Router();
 
-router.post("/addlocation", authenticate, async (req, res) => {
+router.post("/add", authenticate, async (req, res) => {
   const { area, district, state, restaurants } = req.body;
   try {
     if (req.user.role !== "admin") {
@@ -33,18 +33,16 @@ router.post("/addlocation", authenticate, async (req, res) => {
   }
 });
 
-router.get("/search", async (req, res) => {
-  const { area } = req.query;
+router.get("/:locationId", async (req, res) => {
+  const { locationId } = req.params;
 
-  if (!area) {
+  if (!locationId) {
     return res.status(STATUS_CODES.BAD_REQUEST).json({ message: "Enter the details to search" });
   }
 
   try {
-    const location = await Location.findOne({
-      area: { $regex: area, $options: "i" },
-    });
-
+    const location = await Location.findOne({ _id: locationId }).select('-restaurants')
+    .populate('restaurants', 'restaurant');
     if (!location) {
       return res.status(STATUS_CODES.NOT_FOUND).json({ message: "Location not found" });
     }
@@ -53,7 +51,7 @@ router.get("/search", async (req, res) => {
     .select('restaurant')
     .exec();
   
-    res.json({ location, restaurants });
+    res.json({ location });
   } catch (err) {
     res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
       message: "Error searching location and restaurants",

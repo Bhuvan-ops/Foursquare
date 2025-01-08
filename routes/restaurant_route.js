@@ -6,7 +6,7 @@ const STATUS_CODES = require("../constants.js");
 
 const router = express.Router();
 
-router.post("/addrestaurant", authenticate, async (req, res) => {
+router.post("/add", authenticate, async (req, res) => {
   try {
     if (req.user.role !== "admin") {
       return res
@@ -14,10 +14,12 @@ router.post("/addrestaurant", authenticate, async (req, res) => {
         .json({ message: "Access forbidden: Admin role required" });
     }
 
-    const { restaurant, cuisine, rating, area } = req.body;
+    const { restaurant, timings, cuisine, rating, area } = req.body;
 
-    const location = await Location.findById(area);
-    if (!location) {
+    const location = await Location.findOne({
+      area: { $regex: `^${area}$`, $options: 'i' },
+    });
+        if (!location) {
       return res
         .status(STATUS_CODES.NOT_FOUND)
         .json({ message: "Location not found" });
@@ -25,6 +27,7 @@ router.post("/addrestaurant", authenticate, async (req, res) => {
 
     const newRestaurant = new Restaurant({
       restaurant,
+      timings,
       cuisine,
       rating,
       location: location._id,
@@ -46,9 +49,9 @@ router.post("/addrestaurant", authenticate, async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:restaurantId", async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id).populate("location","area").populate("reviews","-restaurant");
+    const restaurant = await Restaurant.findById(req.params.restaurantId).populate("location","area").populate("reviews","-restaurant");
 
     if (!restaurant) {
       return res.status(STATUS_CODES.NOT_FOUND).json({ message: "Restaurant not found" });

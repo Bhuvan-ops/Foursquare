@@ -3,10 +3,11 @@ const mongoose = require('mongoose');
 const Review = require('../models/review_model');
 const User = require('../models/user_model');
 const Restaurant = require('../models/restaurant_model');
+const STATUS_CODES = require('../constants');
 
 const router = express.Router();
 
-router.post('/addreview', async (req, res) => {
+router.post('/add', async (req, res) => {
     try {
       const { userId, restaurantId, rating, comment } = req.body;
   
@@ -14,13 +15,13 @@ router.post('/addreview', async (req, res) => {
       const restaurant = await Restaurant.findById(restaurantId);
   
       if (!user || !restaurant) {
-        return res.status(400).json({ message: 'User or Restaurant not found' });
+        return res.status(STATUS_CODES.BAD_REQUEST).json({ message: 'User or Restaurant not found' });
       }
 
       const existingReview = await Review.findOne({ user: userId, restaurant: restaurantId });
 
       if (existingReview) {
-        return res.status(400).json({ message: 'You have already reviewed this restaurant' });
+        return res.status(STATUS_CODES.BAD_REQUEST).json({ message: 'You have already reviewed this restaurant' });
       }
   
       const newReview = new Review({
@@ -40,14 +41,14 @@ router.post('/addreview', async (req, res) => {
   
       const updatedRestaurant = await Restaurant.findById(restaurantId).populate('reviews');
   
-      res.status(201).json(updatedRestaurant);
+      res.status(STATUS_CODES.CREATED).json(updatedRestaurant);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Server error' });
+      res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({ message: 'Server error' });
     }
   });
 
-  router.delete('/deletereview/:reviewId', async (req, res) => {
+  router.delete('/delete/:reviewId', async (req, res) => {
     try {
       const { reviewId } = req.params;
       const { userId } = req.body;
@@ -55,11 +56,11 @@ router.post('/addreview', async (req, res) => {
       const review = await Review.findById(reviewId);
   
       if (!review) {
-        return res.status(404).json({ message: 'Review not found' });
+        return res.status(STATUS_CODES.NOT_FOUND).json({ message: 'Review not found' });
       }
   
       if (review.user.toString() !== userId) {
-        return res.status(403).json({ message: 'You are not authorized to delete this review' });
+        return res.status(STATUS_CODES.FORBIDDEN).json({ message: 'You are not authorized to delete this review' });
       }
   
       await Review.findByIdAndDelete(reviewId);
@@ -70,10 +71,10 @@ router.post('/addreview', async (req, res) => {
         { new: true }
       );
   
-      res.status(200).json({ message: 'Review deleted successfully' });
+      res.status(STATUS_CODES.SUCCESS).json({ message: 'Review deleted successfully' });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Server error' });
+      res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({ message: 'Server error' });
     }
   });
   
