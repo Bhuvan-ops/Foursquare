@@ -4,6 +4,7 @@
     const User = require("../models/user_model.js");
     const { ACCESS_TOKEN_SECRET } = process.env;
     const STATUS_CODES = require("../constants.js");
+    const authenticate = require("../middlewares/auth_middleware.js");
 
     const router = express.Router();
 
@@ -57,7 +58,7 @@
         }
       });
       
-      router.post("/logout", (req, res) => {
+      router.post("/logout", authenticate, async (req, res) => {
         const token = req.headers.authorization?.split(" ")[1];
     
         if (!token) {

@@ -57,7 +57,7 @@ router.get("/:restaurantId", async (req, res) => {
       return res.status(STATUS_CODES.NOT_FOUND).json({ message: "Restaurant not found" });
     }
 
-    const reviews = restaurant.reviews;
+    const reviews = restaurant.reviews.sort((a, b) => b.rating - a.rating);
     let totalRating = 0;
     reviews.forEach((review) => {
       totalRating += review.rating;

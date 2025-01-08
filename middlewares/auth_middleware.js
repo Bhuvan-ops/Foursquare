@@ -12,7 +12,7 @@ function authenticate(req, res, next) {
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
       if (err.name === "TokenExpiredError") {
-        return res.status(STATUS_CODES.FORBIDDEN).json({ message: "Token has expired" });
+        return res.status(STATUS_CODES.FORBIDDEN).json({ message: "Token has expired, Kindly login again" });
       }
       return res.status(STATUS_CODES.FORBIDDEN).json({ message: "Invalid authentication token" });
     }
