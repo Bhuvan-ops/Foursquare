@@ -1,7 +1,7 @@
     const express = require("express");
     const bcrypt = require("bcrypt");
     const jwt = require("jsonwebtoken");
-    const User = require("../models/User.js");
+    const User = require("../models/user_model.js");
     const { ACCESS_TOKEN_SECRET } = process.env;
     const STATUS_CODES = require("../constants.js");
 

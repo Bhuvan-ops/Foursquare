@@ -2,11 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
-const authRoutes = require("./routes/auth.js");
-const locationRoutes = require("./routes/location.js");
-const restaurantRoutes = require("./routes/restaurant.js");
-const reviewRoutes = require("./routes/review.js");
-const userRoutes = require("./routes/user.js")
+const authRoutes = require("./routes/auth_route.js");
+const locationRoutes = require("./routes/location_route.js");
+const restaurantRoutes = require("./routes/restaurant_route.js");
+const reviewRoutes = require("./routes/review_route.js");
+const userRoutes = require("./routes/user_route.js")
 
 const STATUS_CODES = require("./constants.js");
 const PORT = process.env.PORT || 5000;
