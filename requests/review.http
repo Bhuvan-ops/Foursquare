@@ -1,12 +1,12 @@
 POST http://localhost:5000/review/addreview
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QxNzdiOTU4NTdhNWIxOGU2OWVhNCIsInVzZXJuYW1lIjoiQmh1dmFuIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2MzEwMTc1LCJleHAiOjE3MzYzMTM3NzV9.eDHjBo5eLwckWzQCVnTM3SCLtLqQLOzwzE_qbC85EYo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QxNzdiOTU4NTdhNWIxOGU2OWVhNCIsInVzZXJuYW1lIjoiQmh1dmFuIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2MzE5NzgxLCJleHAiOjE3MzYzMjMzODF9.0CjABxIt-QFkt6gTU3VEbD6Dz3cmHYfHZiTLveD1Wjs
 Content-Type: application/json
 
 {
     "userId": "677d177b95857a5b18e69ea4",
-  "restaurantId": "677d17f195857a5b18e69eab",
+  "restaurantId": "677e23a687f304dd40a3f452",
   "rating": 3,
-  "comment": "Dominos Pizza is a better choice!"
+  "comment": "Quite expensive!"
 }
 
 ###

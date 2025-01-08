@@ -1,7 +1,7 @@
 const express = require("express");
-const Location = require("../models/Location");
-const Restaurant = require("../models/Restaurant");
-const authenticate = require("../middleware/authenticate");
+const Location = require("../models/location_model.js");
+const Restaurant = require("../models/restaurant_model.js");
+const authenticate = require("../middleware/auth_middleware.js");
 const STATUS_CODES = require("../constants.js");
 
 const router = express.Router();

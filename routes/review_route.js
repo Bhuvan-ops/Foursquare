@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Review = require('../models/Review'); // Assuming Review model is in the models folder
+const Review = require('../models/Review');
 const User = require('../models/User');
 const Restaurant = require('../models/Restaurant');
 
