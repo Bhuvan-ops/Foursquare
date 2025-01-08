@@ -1,9 +1,20 @@
 POST http://localhost:5000/review/addreview
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QxNzdiOTU4NTdhNWIxOGU2OWVhNCIsInVzZXJuYW1lIjoiQmh1dmFuIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2MjUxMzA3LCJleHAiOjE3MzYyNTQ5MDd9.TU25bRd0Mk8QfpqbOBEhx3gE7moBejjkHvmtTDMvcyU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QxNzdiOTU4NTdhNWIxOGU2OWVhNCIsInVzZXJuYW1lIjoiQmh1dmFuIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2MzEwMTc1LCJleHAiOjE3MzYzMTM3NzV9.eDHjBo5eLwckWzQCVnTM3SCLtLqQLOzwzE_qbC85EYo
 Content-Type: application/json
 
 {
-  "restaurant": "677d17f195857a5b18e69eab",
+    "userId": "677d177b95857a5b18e69ea4",
+  "restaurantId": "677d17f195857a5b18e69eab",
   "rating": 3,
   "comment": "Dominos Pizza is a better choice!"
+}
+
+###
+
+DELETE http://localhost:5000/review/deletereview/677e03bfde1696a6dce87bc3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3N2QxNzdiOTU4NTdhNWIxOGU2OWVhNCIsInVzZXJuYW1lIjoiQmh1dmFuIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzM2MzEwMTc1LCJleHAiOjE3MzYzMTM3NzV9.eDHjBo5eLwckWzQCVnTM3SCLtLqQLOzwzE_qbC85EYo
+Content-Type: application/json
+
+{
+  "userId": "677d177b95857a5b18e69ea4"
 }
