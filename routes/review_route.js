@@ -4,10 +4,11 @@ const Review = require('../models/review_model');
 const User = require('../models/user_model');
 const Restaurant = require('../models/restaurant_model');
 const STATUS_CODES = require('../constants');
+const authenticate = require("../middlewares/auth_middleware.js");
 
 const router = express.Router();
 
-router.post('/add', async (req, res) => {
+router.post('/add', authenticate, async (req, res) => {
     try {
       const { userId, restaurantId, rating, comment } = req.body;
   
@@ -48,7 +49,7 @@ router.post('/add', async (req, res) => {
     }
   });
 
-  router.delete('/delete/:reviewId', async (req, res) => {
+  router.delete('/delete/:reviewId', authenticate, async (req, res) => {
     try {
       const { reviewId } = req.params;
       const { userId } = req.body;
@@ -77,5 +78,34 @@ router.post('/add', async (req, res) => {
       res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({ message: 'Server error' });
     }
   });
+
+  router.put('/update/:reviewId', authenticate, async (req, res) => {
+    try {
+      const { reviewId } = req.params;
+      const { userId, rating, comment } = req.body;
+    
+      const reviews = restaurant.reviews.sort((a, b) => b.rating - a.rating);
+    
+      if (!review) {
+        return res.status(STATUS_CODES.NOT_FOUND).json({ message: 'Review not found' });
+      }
+    
+      if (review.user.toString() !== userId) {
+        return res.status(STATUS_CODES.FORBIDDEN).json({ message: 'You are not authorized to update this review' });
+      }
+    
+      review.rating = rating;
+      review.comment = comment;
+    
+      await review.save();
+    
+      const updatedRestaurant = await Restaurant.findById(review.restaurant).populate('reviews');
+    
+      res.status(STATUS_CODES.SUCCESS).json({ message: 'Review updated successfully', restaurant: updatedRestaurant });
+    } catch (error) {
+      console.error(error);
+      res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({ message: 'Server error' });
+    }
+  });  
   
 module.exports = router;
