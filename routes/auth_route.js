@@ -25,9 +25,14 @@
       
         try {
           let query = {};
-          if (email) query.email = email;
-          if (phonenumber) query.phonenumber = phonenumber;
-          if (username) query.username = username;
+
+          if (email) {
+              query.email = email;
+          } else if (phonenumber) {
+              query.phonenumber = phonenumber;
+          } else if (username) {
+              query.username = username;
+          }          
       
           const user = await User.findOne(query);
       
@@ -52,5 +57,20 @@
         }
       });
       
+      router.post("/logout", (req, res) => {
+        const token = req.headers.authorization?.split(" ")[1];
+    
+        if (!token) {
+            return res.status(STATUS_CODES.BAD_REQUEST).json({ message: "No token provided" });
+        }
+    
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err) => {
+            if (err) {
+                return res.status(STATUS_CODES.UNAUTHORIZED).json({ message: "Your session has expired. Please log in again." });
+            }
+    
+            res.status(STATUS_CODES.SUCCESS).json({ message: "Logged out successfully" });
+        });
+    });    
 
     module.exports = router;
