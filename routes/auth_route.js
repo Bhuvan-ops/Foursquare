@@ -74,4 +74,7 @@
         });
     });    
 
-    module.exports = router;
+    router.post("/hello", (req, res) => {
+      res.send("Hello World")
+    })
+      module.exports = router;
