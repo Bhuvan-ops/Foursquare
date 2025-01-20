@@ -6,7 +6,9 @@ const authRoutes = require("./routes/auth_route.js");
 const locationRoutes = require("./routes/location_route.js");
 const restaurantRoutes = require("./routes/restaurant_route.js");
 const reviewRoutes = require("./routes/review_route.js");
-const userRoutes = require("./routes/user_route.js")
+const userRoutes = require("./routes/user_route.js");
+
+const dummyRoutes = require("./routes/dummy_route.js");
 
 const STATUS_CODES = require("./constants.js");
 const PORT = process.env.PORT || 5000;
@@ -21,6 +23,8 @@ app.use("/restaurant", restaurantRoutes);
 app.use("/review", reviewRoutes);
 app.use("/user", userRoutes);
 
+app.use(dummyRoutes);
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -32,6 +36,6 @@ mongoose.connect(process.env.MONGO_URI, {
     console.error("Error connecting to MongoDB:", err.message);
   });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server is running on http://0.0.0.0:${PORT}`);
+  });
