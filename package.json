@@ -8,7 +8,8 @@
     "stop": "pm2 stop 'foursquare-app'",
     "restart": "pm2 restart 'foursquare-app'",
     "devStart": "nodemon server.js --name 'foursquare-app'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "logs": "pm2 logs 'foursquare-app'"
   },
   "author": "Bhuvan K",
   "license": "ISC",
